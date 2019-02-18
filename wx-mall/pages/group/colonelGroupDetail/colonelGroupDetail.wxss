@@ -1,0 +1,257 @@
+page{
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.mt20{
+  margin: 20rpx 0;    
+}
+
+.left{
+  float:left;
+}
+
+.right{
+  float:right;
+  padding-right:20rpx
+}
+
+ .my-item{
+    width: 100%;
+    background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 750rpx center;
+    background-size: 16rpx auto,750rpx auto;
+    margin: 20rpx 0; 
+    border-bottom: 1px solid #eee;
+    height: 100rpx;
+    line-height: 100rpx;
+    padding-left: 40rpx;
+}
+
+ .my-3item{
+    width: 100%;
+    background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 750rpx center;
+    background-size: 16rpx auto,750rpx auto;
+    margin: 20rpx 0; 
+    border-bottom: 1px solid #eee;
+    height: 300rpx;
+    line-height: 100rpx;
+    padding-left: 40rpx;
+}
+
+
+.main  .userDesView{  
+   background-color: white;
+}
+
+.main  .userDesView .areas {
+  font-size: 28rpx;
+  background-color:white;
+  width: 90%;
+  flex: 1;
+  height: 90%;
+}
+
+
+
+.itemView {
+    background-color:white;
+    display: flex;
+    align-items: center;
+    height: 242rpx;
+    padding-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    border-bottom: 1px solid #f4f4f4;
+}
+.itemView .img{
+    height: 195.83rpx;
+    width: 195.83rpx;
+    background: #f4f4f4;
+}
+
+.itemView .img image{
+    height: 195.83rpx;
+    width: 195.83rpx;
+}
+
+.itemView .info{
+    flex: 1;
+    height: 145.83rpx;
+    margin-left: 20rpx;
+}
+
+.itemView .t{
+    margin-top: 8rpx;
+    height: 35rpx;
+    line-height: 35rpx;
+    margin-bottom: 12rpx;
+}
+
+.itemView .t .name{
+    display: block;
+    float: left;
+    height: 35rpx;
+    line-height: 35rpx;
+    color: #333;
+    font-size: 33rpx;
+}
+
+.itemView .t .n{
+    display: block;
+    float: right;
+    height: 35rpx;
+    text-align: right;
+    line-height: 35rpx;
+    color: #333;
+    font-size: 33rpx;
+}
+
+
+
+.itemView .info .price{
+    /* background-color:red; */
+    margin-bottom: 15rpx;
+    height: 33rpx;
+    line-height: 33rpx;
+    color: #333;
+    font-size: 33rpx;
+}
+
+
+.itemView .info .goods_down{
+  justify-content:space-between;
+  display: flex;
+  flex-direction:row;
+  height: 26px;
+  /* background-color:red; */
+}
+
+.itemView .info .goods_down .number{
+    display: block;
+    float: left;
+    height: 33rpx;
+    line-height: 33rpx;
+    color: #333;
+    font-size: 30rpx;
+}
+
+
+/*主容器*/  
+.stepper {
+    display: block;
+    float: right;
+    width: 82px;  
+    height: 26px;  
+    /*给主容器设一个边框*/  
+    border: 1px solid #ccc;  
+    border-radius: 3px;  
+    margin:0 auto;  
+}  
+  
+/*加号和减号*/  
+.stepper text {  
+    width: 19px;  
+    line-height: 26px;  
+    text-align: center;  
+    float: left;  
+}  
+  
+/*数值*/  
+.stepper input {  
+    width: 40px;  
+    height: 26px;  
+    float: left;  
+    margin: 0 auto;  
+    text-align: center;  
+    font-size: 12px;  
+    /*给中间的input设置左右边框即可*/  
+    border-left: 1px solid #ccc;  
+    border-right: 1px solid #ccc;  
+}  
+  
+/*普通样式*/  
+.stepper .normal{  
+    color: black;  
+}  
+  
+/*禁用样式*/  
+.stepper .disabled{  
+    color: #ccc;  
+}  
+
+
+
+
+
+
+.main .infoView{
+  background-color: white;
+  margin:0 0 100rpx 0;
+}
+
+.main .infoView .my-item switch{
+  float:right;
+}
+
+
+
+/* .main .footerView{
+  margin-top:20rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+  height:120rpx;
+  font-size:40rpx;
+  color:white;
+  font-weight:100;
+  text-align:center;
+  display:flex;
+  flex-direction:row;
+}
+
+.main .footerView .toindex{
+  border-top:2rpx #eee solid;
+  border-right:2rpx #eee solid;
+  background-color:white;
+  flex:1;
+}
+
+.main .footerView .tosubmit{
+  flex:2;
+  background-color:#09bb07;
+} */
+
+.main .order-total{
+    position: fixed;
+    left:0;
+    bottom: 0;
+    height: 100rpx;
+    width: 100%;
+    display: flex;
+}
+
+.main .order-total .l{
+    flex: 1;
+    height: 100rpx;
+    line-height: 100rpx;
+    color: #b4282d;
+    background: #fff;
+    font-size: 33rpx;
+    padding-left: 31.25rpx;
+    border-top: 1rpx solid rgba(0,0,0,0.2);
+    border-bottom: 1rpx solid rgba(0,0,0,0.2);
+}
+
+.main .order-total .r{
+    width: 233rpx;
+    height: 100rpx;
+    background: #09bb07;
+    border: 1px solid #09bb07;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 30rpx;
+}
+
+

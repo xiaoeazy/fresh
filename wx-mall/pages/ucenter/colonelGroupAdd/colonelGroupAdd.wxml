@@ -1,0 +1,91 @@
+<view class="main">
+  <view class="radioView mt20">
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{radioitems}}"  wx:key="value">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- <view class="imageshowView mt20">
+    <view class="list">
+      <view class="goodsitem" wx:for="{{group.goodsList}}" wx:key="id" wx:for-index="goodsindex" wx:for-item="goodsitem">
+        <image class="img" mode='aspectFill' src="{{goodsitem.primaryPicUrl.length>0?goodsitem.primaryPicUrl:nopic}}"></image>
+      </view>
+    </view>
+  </view> -->
+
+  <view class="adminDesView mt20" hidden="{{adminDesIsHidden}}">
+    <view class="my-item">
+      <text>后台人员产品介绍</text>
+    </view>
+    <view class="my-item">
+      <text>{{group.groupDesc}}</text>
+    </view>
+  </view>
+
+    <view class="itemView mt20" wx:for="{{group.goodsList}}" wx:key="goodskey"  wx:for-item="goodsitem">
+                <view class="img">
+                    <image src="{{goodsitem.primaryPicUrl}}"></image>
+                </view>
+                <view class="info">
+                    <view class="t">
+                        <text class="name">{{goodsitem.name}}</text>
+                    </view>
+                    <!-- <view class="attr"></view> -->
+                    <view class="price">￥{{goodsitem.retailPrice}}</view>
+                    <view class="goods_down">
+                        <view class="number">库存:4</view>
+                    </view>
+                </view>
+    </view>
+
+  <view class="userDesView mt20">
+     <view class="my-item">
+        <input class="input"  value ="{{colonelGroupName}}" name="groupName" placeholder="拼团主题" bindinput="colonelGroupNameInput"/>
+     </view>
+    <view class="fb-body">
+    <textarea class="content" placeholder="介绍您的拼团活动，方便大家了解和参与..."  bindinput ="colonelGroupContentInput" maxlength="{{maxWordSize}}" value="{{colonelGroupContent}}"/>
+    <view class="text-count">{{currentWordNumber|0}}/{{maxWordSize}}</view>
+  </view>
+  </view>
+
+
+  <view class="infoView mt20">
+
+    
+    <view class="my-item" >
+      <picker mode="multiSelector" value="{{groupEndTimeOri}}" bindchange="changeGroupEndTime" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+        <view class="tui-picker-detail">
+          <text class="left">截单时间</text>
+          <text class="right">{{groupEndTime}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="my-item" hidden="{{!isCustomerPickUp}}">
+      <picker mode="multiSelector" value="{{pickUpTimeOri}}" bindchange="changePickUpTime" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+        <view class="tui-picker-detail">
+          <text class="left">提货时间</text>
+          <text class="right">{{pickUpTime}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class="my-item" bindtap="openMap" hidden="{{!isCustomerPickUp}}">
+      <text class="left">自提地址</text>
+      <text class="right">{{groupAddress}}</text>
+    </view>
+
+     <view class="my-item" hidden="{{isCustomerPickUp}}">
+      <picker mode="multiSelector" value="{{pickUpTimeOri}}" bindchange="changeGroupDeliveryTime" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+        <view class="tui-picker-detail">
+          <text class="left">发货时间</text>
+          <text class="right">{{groupDeliveryTime}}</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+
+  <view class="footerView" bindtap="submitData">提交</view>
+</view>

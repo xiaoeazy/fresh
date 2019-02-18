@@ -1,0 +1,16 @@
+DROP FUNCTION IF EXISTS queryChildrenCategoryInfo;
+CREATE FUNCTION queryChildrenCategoryInfo(id INT)
+RETURNS VARCHAR(1000) CHARSET utf8
+BEGIN
+		DECLARE sTemp VARCHAR(1000);
+		DECLARE sTempChd VARCHAR(1000);
+
+		SET sTemp='';
+		SET sTempChd = CAST(id AS CHAR);
+
+		WHILE sTempChd is not null DO
+			SET sTemp= CONCAT(sTemp,',',sTempChd);
+			SELECT GROUP_CONCAT(id) INTO sTempChd FROM nideshop_category WHERE FIND_IN_SET(parent_id,sTempChd)>0;
+		END WHILE;
+	RETURN sTemp;
+END

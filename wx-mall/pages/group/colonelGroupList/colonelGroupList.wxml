@@ -1,0 +1,24 @@
+<scroll-view scroll-y="true" class="list" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}};">
+  <view class="a-section a-topic" wx:if="{{colonelGroup.length > 0}}">
+
+    <view class="item" wx:for="{{colonelGroup}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+      <navigator url="../colonelGroupDetail/colonelGroupDetail?colonelGroupId={{item.colonelGroupId}}" open-type="navigate">
+        <view class="h">
+          <view>
+            <text class="txt" decode="{{true}}">&nbsp;&nbsp;{{item.colonelGroupName}}</text>
+            <text class="time" decode="{{true}}">&nbsp;&nbsp;{{item.createTime}}</text>
+          </view>
+        </view>
+
+        <view class="b">
+          <view class="list">
+            <view class="goodsitem" wx:key="id" wx:for="{{item.group.goodsList}}" wx:for-index="goodsindex" wx:for-item="goodsitem">
+              <image class="img" mode='aspectFill' src="{{goodsitem.primaryPicUrl.length>0?goodsitem.primaryPicUrl:nopic}}"></image>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+
+  </view>
+</scroll-view>

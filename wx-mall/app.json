@@ -1,0 +1,75 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/ucenter/order/order",
+
+    "pages/group/colonelGroupList/colonelGroupList",
+    "pages/ucenter/index/index",
+    
+   
+    
+    
+    "pages/logs/logs",
+    
+    
+
+
+    "pages/ucenter/address/address",
+    "pages/ucenter/addressAdd/addressAdd",
+    "pages/ucenter/help/help",
+    "pages/ucenter/helpInfo/helpInfo",
+    "pages/ucenter/feedback/feedback",
+    "pages/auth/mobile/mobile",
+
+    "pages/ucenter/colonelGroupChooseList/colonelGroupChooseList",
+    "pages/ucenter/colonelGroupAdd/colonelGroupAdd",
+    "pages/ucenter/colonelGroup/colonelGroup",
+     
+    "pages/tshopping/checkout/checkout",
+    "pages/tshopping/address/address",
+    "pages/tshopping/addressAdd/addressAdd",
+
+    "pages/group/colonelGroupDetail/colonelGroupDetail",
+    
+    
+    "pages/ucenter/orderDetail/orderDetail",
+   
+    "pages/pay/pay",
+    "pages/payResult/payResult",
+
+   "pages/auth/btnAuth/btnAuth"
+  ],
+  "window":{
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "生鲜",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#b4282d",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/ic_menu_choice_nor.png",
+        "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/group/colonelGroupList/colonelGroupList",
+        "iconPath": "static/images/ic_menu_sort_nor.png",
+        "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+        "text": "团购"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/ic_menu_me_nor.png",
+        "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

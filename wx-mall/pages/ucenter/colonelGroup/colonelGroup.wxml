@@ -1,0 +1,26 @@
+<view class="container">
+    <view class="colonelGroups">
+        <view class="colonelGroup" wx:for="{{colonelGroupList}}" wx:key="id">
+            <view class="h">
+                <view class="l">开团编号：{{item.colonelGroupSn}}</view>
+                <view class="r" wx:if="{{item.overdue}}">已经结束</view>
+            </view>
+            <view class="b">
+                <view class="l">开团时间：{{item.createTime}}</view>
+                <view class="r">
+                    <button class="btn" data-colonelgroup-index="{{index}}" catchtap="toDetail" >查看详情</button>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view wx:if="{{colonelGroupList.length>6}}" class="loadmore">
+      <block wx:if="{{nomore}}">
+        <text>{{nomoreText}}</text>
+      </block>
+      <block wx:else>
+        <text class="iconfont icon-loading loading" space="nbsp"></text>
+        <text> {{loadmoreText}}</text>
+      </block>
+    </view>
+</view>

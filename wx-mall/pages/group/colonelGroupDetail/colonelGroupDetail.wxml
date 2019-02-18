@@ -1,0 +1,87 @@
+<view class="main">
+
+ 
+
+  <view class="userDesView mt20">
+     <view class="my-item">
+          <text>{{colonelGroupName}}</text>
+     </view>
+    <view class="my-3item">
+        <textarea  disabled ='disabled' value="{{colonelGroupContent}}" ></textarea>
+    </view>
+  </view>
+
+ <!-- <view class="imageshowView mt20">
+    <view class="list">
+      <view class="goodsitem" wx:for="{{group.goodsList}}" wx:key="goodskey" wx:for-index="goodsindex" wx:for-item="goodsitem">
+        <image class="img" mode='aspectFill' src="{{goodsitem.primary_pic_url.length>0?goodsitem.primary_pic_url:nopic}}"></image>
+      </view>
+    </view>
+  </view> -->
+
+  <view>
+    <view class="itemView mt20" wx:for="{{group.goodsList}}" wx:key="goodskey"  wx:for-item="goodsitem">
+                <view class="img">
+                    <image src="{{goodsitem.primaryPicUrl}}"></image>
+                </view>
+                <view class="info">
+                    <view class="t">
+                        <text class="name">{{goodsitem.name}}</text>
+                    </view>
+                    <!-- <view class="attr"></view> -->
+                    <view class="price">￥{{goodsitem.retailPrice}}</view>
+                    <view class="goods_down">
+                        <view class="number">库存:4</view>
+                        <view class="stepper">
+                              <!-- 减号 -->
+                              <text class="normal" data-index="{{index}}" bindtap="bindMinus">-</text>
+                              <!-- 数值 
+                              <input type="number"  data-index="{{index}}" bindchange="bindManual" value="{{goodsitem.buyNum}}" />-->
+                              <input type="number"  disabled='disabled'  value="{{goodsitem.buyNum}}" />
+                              <!-- 加号 -->
+                              <text class="normal" data-index="{{index}}" bindtap="bindPlus">+</text>
+                              </view>
+                    </view>
+                </view>
+    </view>
+
+  </view>
+
+
+  <view class="infoView mt20">
+
+    <view class="my-item" >
+        <view class="tui-picker-detail">
+          <text class="left">截单时间</text>
+          <text class="right">{{groupEndTime}}</text>
+        </view>
+    </view>
+
+    <view class="my-item" hidden="{{!isCustomerPickUp}}">
+        <view class="tui-picker-detail">
+          <text class="left">提货时间</text>
+          <text class="right">{{pickUpTime}}</text>
+        </view>
+    </view>
+    <view class="my-item" bindtap="openMap"  hidden="{{!isCustomerPickUp}}">
+      <text class="left">自提地址</text>
+      <text class="right">{{groupAddress}}</text>
+    </view>
+
+    <view class="my-item"  hidden="{{isCustomerPickUp}}">
+        <view class="tui-picker-detail">
+          <text class="left">发货时间</text>
+          <text class="right">{{pickUpTime}}</text>
+        </view>
+    </view>
+  </view>
+
+
+  <view class="order-total">
+      <view class="l">首页</view>
+      <view  class="r" bindtap="checkoutOrder">
+        提交
+        <view wx:if="{{allprice!=0}}">{{allprice}}</view>
+      </view>
+  </view>
+</view>
