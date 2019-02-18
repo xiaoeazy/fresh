@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fresh.manager.mapper.shop.GoodsspecificationMapper">
+  <resultMap id="BaseResultMap" type="com.fresh.manager.pojo.shop.Goodsspecification">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="specification_id" jdbcType="INTEGER" property="specificationId" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, goods_id, specification_id, value, pic_url
+  </sql>
+  <select id="selectByExample" parameterType="com.fresh.manager.pojo.shop.GoodsspecificationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_goods_specification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nideshop_goods_specification
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from nideshop_goods_specification
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fresh.manager.pojo.shop.GoodsspecificationExample">
+    delete from nideshop_goods_specification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fresh.manager.pojo.shop.Goodsspecification">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into nideshop_goods_specification (goods_id, specification_id, value, 
+      pic_url)
+    values (#{goodsId,jdbcType=INTEGER}, #{specificationId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{picUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fresh.manager.pojo.shop.Goodsspecification">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into nideshop_goods_specification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="specificationId != null">
+        specification_id,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="picUrl != null">
+        pic_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="specificationId != null">
+        #{specificationId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null">
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fresh.manager.pojo.shop.GoodsspecificationExample" resultType="java.lang.Long">
+    select count(*) from nideshop_goods_specification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_goods_specification
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.specificationId != null">
+        specification_id = #{record.specificationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.value != null">
+        value = #{record.value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picUrl != null">
+        pic_url = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_goods_specification
+    set id = #{record.id,jdbcType=INTEGER},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      specification_id = #{record.specificationId,jdbcType=INTEGER},
+      value = #{record.value,jdbcType=VARCHAR},
+      pic_url = #{record.picUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fresh.manager.pojo.shop.Goodsspecification">
+    update nideshop_goods_specification
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="specificationId != null">
+        specification_id = #{specificationId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null">
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fresh.manager.pojo.shop.Goodsspecification">
+    update nideshop_goods_specification
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      specification_id = #{specificationId,jdbcType=INTEGER},
+      value = #{value,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+   <resultMap id="BaseResultMap2" type="com.fresh.manager.pojo.shop.Goodsspecification">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="specification_id" jdbcType="INTEGER" property="specificationId" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+      <result column="specification_name" jdbcType="VARCHAR" property="specificationName" />
+  </resultMap>
+  
+  <select id="queryList" parameterType="com.fresh.manager.pojo.shop.User" resultMap="BaseResultMap2">
+        select 
+        	u.*,
+        	b.name goods_name,
+        	c.name specification_name 
+        from nideshop_goods_specification u 
+        LEFT JOIN nideshop_goods b ON b.id = u.goods_id 
+        LEFT JOIN nideshop_specification c ON c.id = u.specification_id 
+        <where>
+			 	<if test="goodsName != null and goodsName.trim() != ''">
+		            AND b.name LIKE concat('%',#{goodsName},'%')
+		        </if>
+		        <if test="goodsId != null">
+		            AND u.goods_id = #{goodsId}
+		        </if>
+		        <if test="specificationId != null">
+		            AND u.specification_id = #{specificationId}
+		        </if>
+		</where>
+		order by u.id desc
+    </select>
+    
+    
+    <select id="queryTotal" resultType="int">
+        select count(1) 
+        from nideshop_goods_specification u 
+        LEFT JOIN nideshop_goods b ON b.id = u.goods_id
+         <where>
+			 	<if test="goodsName != null and goodsName.trim() != ''">
+		            AND b.name LIKE concat('%',#{goodsName},'%')
+		        </if>
+		        <if test="goodsId != null">
+		            AND u.goods_id = #{goodsId}
+		        </if>
+		        <if test="specificationId != null">
+		            AND u.specification_id = #{specificationId}
+		        </if>
+		</where>
+    </select>
+</mapper>

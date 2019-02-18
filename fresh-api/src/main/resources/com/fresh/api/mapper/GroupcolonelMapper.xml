@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fresh.api.mapper.GroupcolonelMapper">
+  <resultMap id="BaseResultMap" type="com.fresh.api.pojo.Groupcolonel">
+    <id column="colonel_group_id" jdbcType="INTEGER" property="colonelGroupId" />
+    <result column="colonel_group_type" jdbcType="SMALLINT" property="colonelGroupType" />
+    <result column="colonel_group_sn" jdbcType="VARCHAR" property="colonelGroupSn" />
+    <result column="colonel_group_name" jdbcType="VARCHAR" property="colonelGroupName" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="group_start_time" jdbcType="TIMESTAMP" property="groupStartTime" />
+    <result column="group_end_time" jdbcType="TIMESTAMP" property="groupEndTime" />
+    <result column="group_delivery_time" jdbcType="TIMESTAMP" property="groupDeliveryTime" />
+    <result column="group_address" jdbcType="VARCHAR" property="groupAddress" />
+    <result column="latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="pick_up_time" jdbcType="TIMESTAMP" property="pickUpTime" />
+    <result column="colonel_group_content" jdbcType="VARCHAR" property="colonelGroupContent" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="state" jdbcType="BIT" property="state" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    colonel_group_id, colonel_group_type, colonel_group_sn, colonel_group_name, group_id, 
+    group_start_time, group_end_time, group_delivery_time, group_address, latitude, longitude, 
+    pick_up_time, colonel_group_content, create_user_id, create_time, state
+  </sql>
+  <select id="selectByExample" parameterType="com.fresh.api.pojo.GroupcolonelExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from nideshop_group_colonel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nideshop_group_colonel
+    where colonel_group_id = #{colonelGroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from nideshop_group_colonel
+    where colonel_group_id = #{colonelGroupId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fresh.api.pojo.GroupcolonelExample">
+    delete from nideshop_group_colonel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fresh.api.pojo.Groupcolonel">
+    insert into nideshop_group_colonel (colonel_group_id, colonel_group_type, 
+      colonel_group_sn, colonel_group_name, group_id, 
+      group_start_time, group_end_time, group_delivery_time, 
+      group_address, latitude, longitude, 
+      pick_up_time, colonel_group_content, create_user_id, 
+      create_time, state)
+    values (#{colonelGroupId,jdbcType=INTEGER}, #{colonelGroupType,jdbcType=SMALLINT}, 
+      #{colonelGroupSn,jdbcType=VARCHAR}, #{colonelGroupName,jdbcType=VARCHAR}, #{groupId,jdbcType=INTEGER}, 
+      #{groupStartTime,jdbcType=TIMESTAMP}, #{groupEndTime,jdbcType=TIMESTAMP}, #{groupDeliveryTime,jdbcType=TIMESTAMP}, 
+      #{groupAddress,jdbcType=VARCHAR}, #{latitude,jdbcType=DECIMAL}, #{longitude,jdbcType=DECIMAL}, 
+      #{pickUpTime,jdbcType=TIMESTAMP}, #{colonelGroupContent,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fresh.api.pojo.Groupcolonel">
+    insert into nideshop_group_colonel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="colonelGroupId != null">
+        colonel_group_id,
+      </if>
+      <if test="colonelGroupType != null">
+        colonel_group_type,
+      </if>
+      <if test="colonelGroupSn != null">
+        colonel_group_sn,
+      </if>
+      <if test="colonelGroupName != null">
+        colonel_group_name,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupStartTime != null">
+        group_start_time,
+      </if>
+      <if test="groupEndTime != null">
+        group_end_time,
+      </if>
+      <if test="groupDeliveryTime != null">
+        group_delivery_time,
+      </if>
+      <if test="groupAddress != null">
+        group_address,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="pickUpTime != null">
+        pick_up_time,
+      </if>
+      <if test="colonelGroupContent != null">
+        colonel_group_content,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="colonelGroupId != null">
+        #{colonelGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="colonelGroupType != null">
+        #{colonelGroupType,jdbcType=SMALLINT},
+      </if>
+      <if test="colonelGroupSn != null">
+        #{colonelGroupSn,jdbcType=VARCHAR},
+      </if>
+      <if test="colonelGroupName != null">
+        #{colonelGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupStartTime != null">
+        #{groupStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupEndTime != null">
+        #{groupEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupDeliveryTime != null">
+        #{groupDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupAddress != null">
+        #{groupAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="pickUpTime != null">
+        #{pickUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="colonelGroupContent != null">
+        #{colonelGroupContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fresh.api.pojo.GroupcolonelExample" resultType="java.lang.Long">
+    select count(*) from nideshop_group_colonel
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update nideshop_group_colonel
+    <set>
+      <if test="record.colonelGroupId != null">
+        colonel_group_id = #{record.colonelGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.colonelGroupType != null">
+        colonel_group_type = #{record.colonelGroupType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.colonelGroupSn != null">
+        colonel_group_sn = #{record.colonelGroupSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colonelGroupName != null">
+        colonel_group_name = #{record.colonelGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupStartTime != null">
+        group_start_time = #{record.groupStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupEndTime != null">
+        group_end_time = #{record.groupEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupDeliveryTime != null">
+        group_delivery_time = #{record.groupDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupAddress != null">
+        group_address = #{record.groupAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="record.pickUpTime != null">
+        pick_up_time = #{record.pickUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.colonelGroupContent != null">
+        colonel_group_content = #{record.colonelGroupContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update nideshop_group_colonel
+    set colonel_group_id = #{record.colonelGroupId,jdbcType=INTEGER},
+      colonel_group_type = #{record.colonelGroupType,jdbcType=SMALLINT},
+      colonel_group_sn = #{record.colonelGroupSn,jdbcType=VARCHAR},
+      colonel_group_name = #{record.colonelGroupName,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=INTEGER},
+      group_start_time = #{record.groupStartTime,jdbcType=TIMESTAMP},
+      group_end_time = #{record.groupEndTime,jdbcType=TIMESTAMP},
+      group_delivery_time = #{record.groupDeliveryTime,jdbcType=TIMESTAMP},
+      group_address = #{record.groupAddress,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DECIMAL},
+      longitude = #{record.longitude,jdbcType=DECIMAL},
+      pick_up_time = #{record.pickUpTime,jdbcType=TIMESTAMP},
+      colonel_group_content = #{record.colonelGroupContent,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fresh.api.pojo.Groupcolonel">
+    update nideshop_group_colonel
+    <set>
+      <if test="colonelGroupType != null">
+        colonel_group_type = #{colonelGroupType,jdbcType=SMALLINT},
+      </if>
+      <if test="colonelGroupSn != null">
+        colonel_group_sn = #{colonelGroupSn,jdbcType=VARCHAR},
+      </if>
+      <if test="colonelGroupName != null">
+        colonel_group_name = #{colonelGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupStartTime != null">
+        group_start_time = #{groupStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupEndTime != null">
+        group_end_time = #{groupEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupDeliveryTime != null">
+        group_delivery_time = #{groupDeliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupAddress != null">
+        group_address = #{groupAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DECIMAL},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="pickUpTime != null">
+        pick_up_time = #{pickUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="colonelGroupContent != null">
+        colonel_group_content = #{colonelGroupContent,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=BIT},
+      </if>
+    </set>
+    where colonel_group_id = #{colonelGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fresh.api.pojo.Groupcolonel">
+    update nideshop_group_colonel
+    set colonel_group_type = #{colonelGroupType,jdbcType=SMALLINT},
+      colonel_group_sn = #{colonelGroupSn,jdbcType=VARCHAR},
+      colonel_group_name = #{colonelGroupName,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=INTEGER},
+      group_start_time = #{groupStartTime,jdbcType=TIMESTAMP},
+      group_end_time = #{groupEndTime,jdbcType=TIMESTAMP},
+      group_delivery_time = #{groupDeliveryTime,jdbcType=TIMESTAMP},
+      group_address = #{groupAddress,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      longitude = #{longitude,jdbcType=DECIMAL},
+      pick_up_time = #{pickUpTime,jdbcType=TIMESTAMP},
+      colonel_group_content = #{colonelGroupContent,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=BIT}
+    where colonel_group_id = #{colonelGroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

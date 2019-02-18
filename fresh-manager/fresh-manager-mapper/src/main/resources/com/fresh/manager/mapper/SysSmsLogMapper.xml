@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fresh.manager.mapper.SysSmsLogMapper">
+  <resultMap id="BaseResultMap" type="com.fresh.manager.pojo.SysSmsLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="stime" jdbcType="TIMESTAMP" property="stime" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="extno" jdbcType="VARCHAR" property="extno" />
+    <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
+    <result column="send_id" jdbcType="VARCHAR" property="sendId" />
+    <result column="invalid_num" jdbcType="INTEGER" property="invalidNum" />
+    <result column="success_num" jdbcType="INTEGER" property="successNum" />
+    <result column="black_num" jdbcType="INTEGER" property="blackNum" />
+    <result column="return_msg" jdbcType="VARCHAR" property="returnMsg" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_id, content, mobile, stime, sign, type, extno, send_status, send_id, invalid_num, 
+    success_num, black_num, return_msg
+  </sql>
+  <select id="selectByExample" parameterType="com.fresh.manager.pojo.SysSmsLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_sms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_sms_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_sms_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fresh.manager.pojo.SysSmsLogExample">
+    delete from sys_sms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fresh.manager.pojo.SysSmsLog">
+    insert into sys_sms_log (id, user_id, content, 
+      mobile, stime, sign, 
+      type, extno, send_status, 
+      send_id, invalid_num, success_num, 
+      black_num, return_msg)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{stime,jdbcType=TIMESTAMP}, #{sign,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{extno,jdbcType=VARCHAR}, #{sendStatus,jdbcType=INTEGER}, 
+      #{sendId,jdbcType=VARCHAR}, #{invalidNum,jdbcType=INTEGER}, #{successNum,jdbcType=INTEGER}, 
+      #{blackNum,jdbcType=INTEGER}, #{returnMsg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fresh.manager.pojo.SysSmsLog">
+    insert into sys_sms_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="stime != null">
+        stime,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="extno != null">
+        extno,
+      </if>
+      <if test="sendStatus != null">
+        send_status,
+      </if>
+      <if test="sendId != null">
+        send_id,
+      </if>
+      <if test="invalidNum != null">
+        invalid_num,
+      </if>
+      <if test="successNum != null">
+        success_num,
+      </if>
+      <if test="blackNum != null">
+        black_num,
+      </if>
+      <if test="returnMsg != null">
+        return_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="extno != null">
+        #{extno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sendId != null">
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidNum != null">
+        #{invalidNum,jdbcType=INTEGER},
+      </if>
+      <if test="successNum != null">
+        #{successNum,jdbcType=INTEGER},
+      </if>
+      <if test="blackNum != null">
+        #{blackNum,jdbcType=INTEGER},
+      </if>
+      <if test="returnMsg != null">
+        #{returnMsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fresh.manager.pojo.SysSmsLogExample" resultType="java.lang.Long">
+    select count(*) from sys_sms_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_sms_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stime != null">
+        stime = #{record.stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sign != null">
+        sign = #{record.sign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extno != null">
+        extno = #{record.extno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendStatus != null">
+        send_status = #{record.sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendId != null">
+        send_id = #{record.sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalidNum != null">
+        invalid_num = #{record.invalidNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.successNum != null">
+        success_num = #{record.successNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.blackNum != null">
+        black_num = #{record.blackNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.returnMsg != null">
+        return_msg = #{record.returnMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_sms_log
+    set id = #{record.id,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      content = #{record.content,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      stime = #{record.stime,jdbcType=TIMESTAMP},
+      sign = #{record.sign,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      extno = #{record.extno,jdbcType=VARCHAR},
+      send_status = #{record.sendStatus,jdbcType=INTEGER},
+      send_id = #{record.sendId,jdbcType=VARCHAR},
+      invalid_num = #{record.invalidNum,jdbcType=INTEGER},
+      success_num = #{record.successNum,jdbcType=INTEGER},
+      black_num = #{record.blackNum,jdbcType=INTEGER},
+      return_msg = #{record.returnMsg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fresh.manager.pojo.SysSmsLog">
+    update sys_sms_log
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null">
+        stime = #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="extno != null">
+        extno = #{extno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null">
+        send_status = #{sendStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sendId != null">
+        send_id = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidNum != null">
+        invalid_num = #{invalidNum,jdbcType=INTEGER},
+      </if>
+      <if test="successNum != null">
+        success_num = #{successNum,jdbcType=INTEGER},
+      </if>
+      <if test="blackNum != null">
+        black_num = #{blackNum,jdbcType=INTEGER},
+      </if>
+      <if test="returnMsg != null">
+        return_msg = #{returnMsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fresh.manager.pojo.SysSmsLog">
+    update sys_sms_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      content = #{content,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      stime = #{stime,jdbcType=TIMESTAMP},
+      sign = #{sign,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      extno = #{extno,jdbcType=VARCHAR},
+      send_status = #{sendStatus,jdbcType=INTEGER},
+      send_id = #{sendId,jdbcType=VARCHAR},
+      invalid_num = #{invalidNum,jdbcType=INTEGER},
+      success_num = #{successNum,jdbcType=INTEGER},
+      black_num = #{blackNum,jdbcType=INTEGER},
+      return_msg = #{returnMsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+    
+  <resultMap id="BaseResultMap2" type="com.fresh.manager.pojo.SysSmsLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="stime" jdbcType="TIMESTAMP" property="stime" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="extno" jdbcType="VARCHAR" property="extno" />
+    <result column="send_status" jdbcType="INTEGER" property="sendStatus" />
+    <result column="send_id" jdbcType="VARCHAR" property="sendId" />
+    <result column="invalid_num" jdbcType="INTEGER" property="invalidNum" />
+    <result column="success_num" jdbcType="INTEGER" property="successNum" />
+    <result column="black_num" jdbcType="INTEGER" property="blackNum" />
+    <result column="return_msg" jdbcType="VARCHAR" property="returnMsg" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  
+  <select id="queryList" parameterType="com.fresh.manager.pojo.SysSmsLog" resultMap="BaseResultMap2">
+        select a.*
+		from sys_sms_log a
+		LEFT JOIN sys_user b ON b.user_id = a.user_id
+        <where>
+        	  <if test="sendId != null and sendId != ''">
+		      	 AND a.send_id LIKE concat('%',#{sendId},'%')
+		      </if>
+        </where>
+    </select>
+</mapper>
